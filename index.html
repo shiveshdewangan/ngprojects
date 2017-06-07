@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="customersApp">
+<head>
+    <title>Angular App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body ng-controller="customersController">
+
+    <div ng-controller="customersController">
+
+    <h2>Customers</h2>
+
+    Filter : <input type="text" ng-model="name">
+
+    <br/>
+    <br/>
+
+    <table>
+
+        <tr>
+            <th>Name</th>
+            <th>City</th>
+            <th>Order Total</th>
+            <th>Joined</th>
+        </tr>
+        <tr ng-repeat="cust in customers | filter: name">
+            <td>{{cust.name}}</td>
+            <td>{{cust.city}}</td>
+            <td>{{cust.orderTotal}}</td>
+            <td>{{cust.joinedDate}}</td>
+            <td>{{cust.orders}}</td>
+        </tr>
+
+    </table>
+
+    <br/>
+
+    <span>Total Customers :  {{customers.length}}</span>
+    </div>
+
+    <div ng-controller="customersController">
+
+    <div ng-repeat = "cust in customers">
+
+    <h2>{{cust.name}}'s Order</h2>
+    <table>
+        <tr>
+            <th>Product Id</th>
+            <th>Product</th>
+            <th>Total</th>
+        </tr>
+        <tr ng-repeat="order in cust.orders">
+            <td>{{order.id}}</td>
+            <td>{{order.product}}</td>
+            <td>{{order.total | currency}}</td>
+        </tr>
+    </table>
+    </div>
+
+    </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+    <script type="text/javascript" src="app/app.js"></script>
+    <script type="text/javascript" src="app/controllers/customersController.js"></script>
+    <script type="text/javascript" src="app/services/customersFactory.js"></script>
+
+</body>
+</html>
+
